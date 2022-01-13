@@ -1,0 +1,19 @@
+<mat-spinner *ngIf="isShowSpinner" style="text-align: -webkit-center; margin-top: 100px; margin-left: 45%;"></mat-spinner>
+<div *ngIf="isShowSpinner == false"
+    style="height: max-content; background: white;width: fit-content; padding: 40px; border-radius: 10px; font-family: Palatino; text-align: center; width: 100%;">
+    <table class="table table-striped" style="width: 50%; display: inline-table;">
+        <thead>
+            <tr> 
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="moviesList == null || moviesList.length == 0"><td colspan="2">No data</td></tr>
+            <tr *ngFor="let test of moviesList">
+                <td>{{test.index}}</td>
+                <td>{{test.title}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

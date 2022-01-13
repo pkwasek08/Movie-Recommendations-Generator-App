@@ -1,0 +1,41 @@
+<div>
+    <form class="login-form" style="margin-top: 20px; font-size: 20px; text-align: center;">
+        <mat-form-field style="margin-bottom: 20px; width: 500px;">
+            <mat-label>Title</mat-label>
+
+            <input matInput [formControl]="movieTitle" list="moviesListData" name="moviesListData" placeholder="Serach movie">
+
+            <datalist id="moviesListData">
+                <option *ngFor="let movie of moviesList">{{movie.title}} </option>
+            </datalist>
+            <mat-error *ngIf="movieTitle.hasError('required')">
+                Title is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <button class="btn btn-primary" (click)="generate()" type="submit" style="margin-left: 30px;">
+            Generate
+        </button>
+    </form>
+    <mat-spinner *ngIf="isShowSpinner" style="text-align: -webkit-center; margin-top: 100px; margin-left: 45%;">
+    </mat-spinner>
+    <div *ngIf="isShowSpinner == false"
+        style="height: max-content; background: white;width: fit-content; padding: 40px; border-radius: 10px; font-family: Palatino; text-align: center; width: 100%;">
+        <table class="table table-striped" style="width: 70%; display: inline-table;">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="generateMoviesList == null || generateMoviesList.length == 0">
+                    <td colspan="2">No data</td>
+                </tr>
+                <tr *ngFor="let movie of generateMoviesList">
+                    <td>{{movie.index}}</td>
+                    <td>{{movie.title}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
